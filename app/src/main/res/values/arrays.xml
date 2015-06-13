@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="pref_font_size">
+        <item>@string/font_pref_small</item>
+        <item>@string/font_pref_medium</item>
+        <item>@string/font_pref_large</item>
+    </string-array>
+
+    <string-array name="pref_font_values">
+        <item>16</item>
+        <item>20</item>
+        <item>24</item>
+    </string-array>
+</resources>
