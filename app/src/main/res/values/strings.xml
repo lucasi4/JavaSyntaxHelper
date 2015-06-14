@@ -6,6 +6,8 @@
 
     <color name="background">#293134</color>
     <color name="white">#FFFFFF</color>
+    <color name="green">#93C763</color>
+    <color name="orange">#EC7600</color>
 
     <string name="font_pref_small">Small</string>
     <string name="font_pref_medium">Medium</string>
@@ -15,6 +17,7 @@
     <string name="font_size_title">Font Size</string>
 
     <string name="header_sample_code">Sample Code</string>
+    <string name="description_divider">Description</string>
 
     <string name="textview_placeholder">Some text here Some text here Some text here Some text here
         Some text here Some text here Some text here Some text here Some text here Some text here Some text here Some text here
