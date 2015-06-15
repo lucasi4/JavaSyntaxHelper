@@ -7,15 +7,15 @@ public interface TopicData {
 
     String [] topics = {
             "Variables",
-            "topic 2",
-            "topic 3",
-            "topic 4",
-            "topic 5",
-            "topic 6",
-            "topic 7",
-            "topic 8",
-            "topic 0",
-            "topic 11",
+            "Comments",
+            "Data Types",
+            "Constants",
+            "if Statements",
+            "Multiple Alternative if",
+            "Comparing Values ",
+            "While Loop",
+            "Do While Loop",
+            "For Loop",
             "topic 12",
             "topic 13",
             "topic 14",
@@ -27,15 +27,22 @@ public interface TopicData {
     };
 
     String [] descriptions = {
-            "description 1",
-            "description 2",
-            "description 3",
-            "description 4",
-            "description 5",
-            "description 6",
-            "description 7",
-            "description 8",
-            "description 0",
+            "A variable is a storage location in a computer program." +
+                    " Shown above is an example of a variable being declared and initialized.",
+            "Comments are text ignored by the compiler. They can be used to describe and " +
+                    "explain your code to other programmers and they can be useful when you" +
+                    " review your own code in the future.",
+            "In Java, every value is either a reference to an object, or it belongs to one of " +
+                    "the eight primitive types." + "\nSix of the primitive types are number types;" +
+            " four of them for integers and two for floating-point numbers." +
+                    "Shown above are some example data types and their declarations.",
+            "A final variable is a constant. Once its value has been set, it cannot be changed." +
+            " Constants are commonly declared using all upper-case letters.",
+            "The if statement is used to implement a decision.",
+            "Something about else if",
+            "something aout comparing",
+            "While Loop",
+            "For loop stuff",
             "description 11",
             "description 12",
             "description 13",

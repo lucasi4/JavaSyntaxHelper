@@ -47,7 +47,7 @@ public class TopicInfo extends ActionBarActivity implements TopicInfoFragment.Se
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_launch_browser) {
-            Uri uri = Uri.parse("https://www.google.com/search?q="+ mTopic);
+            Uri uri = Uri.parse("https://www.google.com/search?q="+ "java " + mTopic);
             Intent gSearchIntent = new Intent(Intent.ACTION_VIEW, uri);
 
             startActivity(gSearchIntent);
