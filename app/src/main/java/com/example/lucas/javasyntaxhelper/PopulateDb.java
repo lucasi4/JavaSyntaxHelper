@@ -4,13 +4,10 @@ import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
-import android.database.DatabaseUtils;
 import android.net.Uri;
 import android.os.AsyncTask;
-import android.util.Log;
 
 import com.example.lucas.javasyntaxhelper.data.TopicContract;
-import com.example.lucas.javasyntaxhelper.data.TopicDbHelper;
 
 /**
  * Created by Lucas on 6/13/2015.
@@ -24,9 +21,6 @@ public class PopulateDb extends AsyncTask <String, Void, Void> {
         mContext = context;
     }
 
-    public void dropDb(){
-        mContext.deleteDatabase(TopicDbHelper.DATABASE_NAME);
-    }
 
     public String[] getTopics(){
         String[] returnArray = new String[TopicData.topics.length];
@@ -49,7 +43,6 @@ public class PopulateDb extends AsyncTask <String, Void, Void> {
     }
 
     public long addEntry(String topic, String description, String filename){
-        Log.v(LOG_TAG, "mmmm addEntry called");
 
         Cursor topicCursor = mContext.getContentResolver().query(
                 TopicContract.TopicsEntry.CONTENT_URI,
@@ -59,14 +52,14 @@ public class PopulateDb extends AsyncTask <String, Void, Void> {
                 null
         );
 
-        Log.v(LOG_TAG, "mmm cursorinadd " + DatabaseUtils.dumpCursorToString(topicCursor));
+        //Log.v(LOG_TAG, "mmm cursorinadd " + DatabaseUtils.dumpCursorToString(topicCursor));
 
         if(topicCursor.moveToFirst()){
             int idIndex = topicCursor.getColumnIndex(TopicContract.TopicsEntry.COLUMN_TOPIC_NAME);
-            Log.v(LOG_TAG, "mmm before return");
+            //Log.v(LOG_TAG, "mmm before return");
             return topicCursor.getLong(idIndex);
         } else {
-            Log.v(LOG_TAG, "nnn in else " + topic);
+            //Log.v(LOG_TAG, "nnn in else " + topic);
             ContentValues topicValues = new ContentValues();
             topicValues.put(TopicContract.TopicsEntry.COLUMN_TOPIC_NAME, topic);
             topicValues.put(TopicContract.TopicsEntry.COLUMN_DESCRIPTION, description);
@@ -82,11 +75,7 @@ public class PopulateDb extends AsyncTask <String, Void, Void> {
     @Override
     protected Void doInBackground(String... params) {
 
-        //dropDb();
-
-        Log.v(LOG_TAG, "mmmm doInBackground called");
-
-
+        //Log.v(LOG_TAG, "mmmm doInBackground called");
         for(int i = 0; i< TopicData.descriptions.length ; i++){
             addEntry(
                     TopicData.topics[i],

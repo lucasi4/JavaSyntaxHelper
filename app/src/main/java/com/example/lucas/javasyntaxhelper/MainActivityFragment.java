@@ -2,10 +2,8 @@ package com.example.lucas.javasyntaxhelper;
 
 import android.content.Intent;
 import android.database.Cursor;
-import android.database.DatabaseUtils;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,19 +25,12 @@ public class MainActivityFragment extends Fragment {
 
     public static final String LOG_TAG = MainActivityFragment.class.getSimpleName();
     PopulateDb pdb;
+    Cursor mCursor;
     private ArrayAdapter<String> testAdapter;
-
-
 
     public MainActivityFragment() {
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-
-
-    }
 
     @Override
     public void onStart() {
@@ -49,30 +40,30 @@ public class MainActivityFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         pdb = new PopulateDb(getActivity());
-        pdb.execute("test");
+        pdb.execute("");
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-
-        //pdb.dropDb();
-
-       Cursor cursor = getActivity().getContentResolver().query(
+    public void runQuery(){
+        mCursor = getActivity().getContentResolver().query(
                 TopicContract.TopicsEntry.CONTENT_URI,
                 null,
                 null ,
                 null,
                 null
         );
+    }
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+
         String [] test = new String[TopicData.topics.length];
 
-        Log.d(LOG_TAG, "cursorrrrr " + DatabaseUtils.dumpCursorToString(cursor));
-
-        for(int i = 0; i < cursor.getCount(); i++){
-            cursor.moveToNext();
-            test[i] = cursor.getString(cursor.getColumnIndex(TopicContract.TopicsEntry.COLUMN_TOPIC_NAME));
+        for(int i = 0; i < mCursor.getCount(); i++){
+            mCursor.moveToNext();
+            test[i] = mCursor.getString(mCursor.getColumnIndex(
+                    TopicContract.TopicsEntry.COLUMN_TOPIC_NAME));
         }
         List<String> testList = new ArrayList<>(Arrays.asList(test));
 
