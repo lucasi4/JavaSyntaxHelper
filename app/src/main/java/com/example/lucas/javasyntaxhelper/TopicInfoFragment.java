@@ -1,5 +1,6 @@
 package com.example.lucas.javasyntaxhelper;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -20,10 +21,20 @@ public class TopicInfoFragment extends Fragment {
 
     TextView mDescriptionTextView;
     ImageView mImageView;
+    String mTopic;
 
+
+
+    SendData mSendData;
 
 
     public TopicInfoFragment() {
+    }
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        mSendData = (SendData)activity;
     }
 
     @Override
@@ -31,13 +42,14 @@ public class TopicInfoFragment extends Fragment {
         super.onStart();
     }
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_topic_info, container, false);
         Intent intent = getActivity().getIntent();
-        String [] topicSelected = new String[1];
-        if(intent != null && intent.hasExtra(Intent.EXTRA_TEXT)){
+        String[] topicSelected = new String[1];
+        if (intent != null && intent.hasExtra(Intent.EXTRA_TEXT)) {
             topicSelected[0] = intent.getStringExtra(Intent.EXTRA_TEXT);
         }
 
@@ -53,22 +65,30 @@ public class TopicInfoFragment extends Fragment {
                 TopicContract.TopicsEntry.COLUMN_DESCRIPTION));
         String imgFilename = cursor.getString(cursor.getColumnIndex(
                 TopicContract.TopicsEntry.COLUMN_IMG_NAME));
+        mSendData.send(topicSelected[0]);
+
 
         //set title bar
-        ((TopicInfo) getActivity())
+                ((TopicInfo) getActivity())
                 .setActionBarTitle(topicSelected[0]);
 
-        mDescriptionTextView = (TextView)view.findViewById(R.id.description_textview);
+        mDescriptionTextView = (TextView) view.findViewById(R.id.description_textview);
         mDescriptionTextView.setText(topicDescription);
 
         //String uri = "drawable/" + imgFilename + ".png";
         int imageResource = getActivity().getResources().getIdentifier(
                 imgFilename, "drawable", getActivity().getPackageName());
 
-        mImageView = (ImageView)view.findViewById(R.id.sample_imageview);
+        mImageView = (ImageView) view.findViewById(R.id.sample_imageview);
 
         mImageView.setImageResource(imageResource);
 
-        return view ;
+        return view;
     }
+
+    public interface SendData {
+        public void send(String s);
+    }
+
 }
+

@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Java Syntax Helper</string>
 
-    <string name="action_settings">Settings</string>
+    <string name="action_search_topic">Launch browser</string>
     <string name="title_activity_topic_info">TopicInfo</string>
 
     <color name="background">#293134</color>

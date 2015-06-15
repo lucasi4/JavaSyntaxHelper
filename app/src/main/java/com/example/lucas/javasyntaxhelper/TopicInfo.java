@@ -1,13 +1,18 @@
 package com.example.lucas.javasyntaxhelper;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
 
-public class TopicInfo extends ActionBarActivity {
+public class TopicInfo extends ActionBarActivity implements TopicInfoFragment.SendData {
+    public static final String LOG_TAG = TopicInfo.class.getSimpleName();
+
+    public String mTopic;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -15,17 +20,22 @@ public class TopicInfo extends ActionBarActivity {
         setContentView(R.layout.activity_topic_info);
     }
 
+    public void setActionBarTitle(String title){
+        getSupportActionBar().setTitle(title);
+    }
+
+    @Override
+    public void send(String s){
+        mTopic = s;
+        Log.v(LOG_TAG, "String " + s);
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_topic_info, menu);
-        setTitle("Testing here");
+        getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
-    }
-
-    public void setActionBarTitle(String title){
-        getSupportActionBar().setTitle(title);
     }
 
     @Override
@@ -36,9 +46,11 @@ public class TopicInfo extends ActionBarActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            Intent intent = new Intent(this, SettingsActivity.class);
-            startActivity(intent);
+        if (id == R.id.action_launch_browser) {
+            Uri uri = Uri.parse("https://www.google.com/search?q="+ mTopic);
+            Intent gSearchIntent = new Intent(Intent.ACTION_VIEW, uri);
+
+            startActivity(gSearchIntent);
             return true;
         }
 

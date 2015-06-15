@@ -20,7 +20,6 @@
 
     <ImageView
         android:layout_below="@+id/header_textview"
-        android:paddingTop="15dp"
         android:id="@+id/sample_imageview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -30,7 +29,7 @@
         android:id="@+id/description_header"
         android:layout_below="@id/sample_imageview"
         android:text="@string/description_divider"
-        android:textSize="26dp"
+        android:textSize="26sp"
         android:gravity="center_horizontal"
         android:textColor="@color/white"
         android:layout_width="match_parent"
@@ -39,8 +38,7 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/description_header"
-        android:paddingTop="20dp">
+        android:layout_below="@+id/description_header">
 
         <TextView
             android:id="@+id/description_textview"

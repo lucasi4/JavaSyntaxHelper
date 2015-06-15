@@ -6,7 +6,7 @@ package com.example.lucas.javasyntaxhelper;
 public interface TopicData {
 
     String [] topics = {
-            "topic 1",
+            "Variables",
             "topic 2",
             "topic 3",
             "topic 4",
